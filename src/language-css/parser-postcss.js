@@ -16,12 +16,11 @@ function parseSelector(selector) {
       value: selector.replace(/^ +/, "").replace(/ +$/, "")
     };
   }
+
   const selectorParser = require("postcss-selector-parser");
-  let result;
-  selectorParser(result_ => {
-    result = result_;
-  }).process(selector);
-  return addTypePrefix(result, "selector-");
+  const ast = selectorParser().astSync(selector);
+
+  return addTypePrefix(ast, "selector-");
 }
 
 function parseValueNodes(nodes) {
@@ -155,11 +154,12 @@ function addTypePrefix(node, prefix) {
   if (node && typeof node === "object") {
     delete node.parent;
     for (const key in node) {
-      addTypePrefix(node[key], prefix);
       if (key === "type" && typeof node[key] === "string") {
         if (!node[key].startsWith(prefix)) {
           node[key] = prefix + node[key];
         }
+      } else {
+        addTypePrefix(node[key], prefix);
       }
     }
   }
@@ -274,13 +274,13 @@ function parseNestedCSS(node) {
       node.raws.params = params;
     }
 
-    // Ignore LESS mixin declaration
     if (selector.trim().length > 0) {
+      // Ignore LESS rulesets
       if (selector.startsWith("@") && selector.endsWith(":")) {
         return node;
       }
 
-      // Ignore LESS mixins
+      // Ignore LESS mixins declaraion
       if (node.mixin) {
         node.selector = parseValue(selector);
 

@@ -1134,7 +1134,7 @@ $space-scale: (0, "0") (0.25, "0-25") (0.5, "0-5") (0.75, "0-75") (1, "1")
 $buttonConfig: "save" 50px, "cancel" 50px, "help" 100px;
 
 $locale: "en_us";
-html[lang="#{$locale}"] {
+html[lang="#{locale}"] {
   font-size: 10px;
 }
 $alertClass: "error";

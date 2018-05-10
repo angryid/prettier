@@ -1244,22 +1244,22 @@ bold
 
 }
 a.important {
-    @extend .notice !optional;
+    @extend .notice /*!optional*/;
 }
 a.important {
-@extend .notice !optional;
+@extend .notice /*!optional*/;
 }
 a.important {
-    @extend  .notice !optional ;
+    @extend  .notice /*!optional*/ ;
 }
 a.important {
-    @extend  .notice  !optional  ;
+    @extend  .notice  /*!optional*/ ;
 }
 a.important
 {
 @extend
 .notice
-!optional
+/*!optional */
 ;
 }
 a.important
@@ -1270,7 +1270,7 @@ a.important
 
 .notice
 
-!optional
+/* !optional */
 
 ;
 
@@ -1371,22 +1371,25 @@ a.important
   @extend %message-shared;
 }
 a.important {
-  @extend .notice !optional;
+  @extend .notice /*!optional*/;
 }
 a.important {
-  @extend .notice !optional;
+  @extend .notice /*!optional*/;
 }
 a.important {
-  @extend .notice !optional;
+  @extend .notice /*!optional*/;
 }
 a.important {
-  @extend .notice !optional;
+  @extend .notice  /*!optional*/;
 }
 a.important {
-  @extend .notice !optional;
+  @extend .notice
+/*!optional */;
 }
 a.important {
-  @extend .notice !optional;
+  @extend .notice
+
+/* !optional */;
 }
 .message-error {
   @extend .message, .important;
